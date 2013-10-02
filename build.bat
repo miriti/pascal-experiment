@@ -8,7 +8,7 @@
 :compile
 	set EXE_DIR=bin\%TARGET%
 	if not exist %EXE_DIR% mkdir %EXE_DIR%
-	fpc -FE%EXE_DIR% -FUobj src\%PROGRAM_NAME%.pp
+	fpc -FE%EXE_DIR% -FUobj src\%PROGRAM_NAME%.pas
 
 :run
 	cd %EXE_DIR%
