@@ -1,9 +1,15 @@
-:setup
+:start
 	@echo off
 	set PROGRAM_NAME=game
+	goto target-release
 
 :target-release
 	set TARGET=release
+	goto compile
+
+:target-debug
+	set TARGET=debug
+	goto compile
 
 :compile
 	set EXE_DIR=bin\%TARGET%
