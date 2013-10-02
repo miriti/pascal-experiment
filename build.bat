@@ -1,6 +1,6 @@
 :setup
 	@echo off
-	set PROGRAM_NAME=igdc100
+	set PROGRAM_NAME=game
 
 :target-release
 	set TARGET=release

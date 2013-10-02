@@ -1,4 +1,4 @@
-program igdc100;
+program game;
 	
 begin
 	writeln('hello world!');
