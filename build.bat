@@ -1,6 +1,7 @@
 :start
 	@echo off
 	set PROGRAM_NAME=game
+	set ENTRY_EXT=dpr
 	goto target-release
 
 :target-release
@@ -19,7 +20,7 @@
 	if not exist %EXE_DIR% mkdir %EXE_DIR%
 	if not exist %OBJ_DIR% mkdir %OBJ_DIR%	
 	del /F /Q EXE_DIR\*.* %OBJ_DIR%\*.*
-	fpc -FE%EXE_DIR% -FU%OBJ_DIR% -Sd %PROGRAM_NAME%.pas
+	fpc -FE%EXE_DIR% -FU%OBJ_DIR% -Sd %PROGRAM_NAME%.%ENTRY_EXT%
 
 :run
 	cd %EXE_DIR%
