@@ -1,6 +1,9 @@
+{$APPTYPE GUI}
+{$MODE DELPHI}
 program game;
+uses
+   display in 'display.pas';
 	
 begin
-	writeln('hello world!');
-	readln();
+   TDisplay.Init(1024, 768, false);
 end.

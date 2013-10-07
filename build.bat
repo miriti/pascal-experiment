@@ -12,14 +12,18 @@
 	goto compile
 
 :compile
-	set EXE_DIR=bin\%TARGET%
+	echo Compiling...
+	cd src
+	set EXE_DIR=..\bin\%TARGET%
+	set OBJ_DIR=..\obj
 	if not exist %EXE_DIR% mkdir %EXE_DIR%
-	if not exist obj mkdir obj
-	fpc -FE%EXE_DIR% -FUobj src\%PROGRAM_NAME%.pas
+	if not exist %OBJ_DIR% mkdir %OBJ_DIR%	
+	del /F /Q EXE_DIR\*.* %OBJ_DIR%\*.*
+	fpc -FE%EXE_DIR% -FU%OBJ_DIR% -Sd %PROGRAM_NAME%.pas
 
 :run
 	cd %EXE_DIR%
-	echo Running "%PROGRAM_NAME%" ...
+	echo Running [%PROGRAM_NAME%.exe]
 	%PROGRAM_NAME%.exe
 
 pause
