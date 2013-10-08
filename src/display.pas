@@ -3,18 +3,61 @@ unit display;
 interface
 
 uses
-   Windows;
+   Windows, SDL;
 
 type
    TDisplay = class
-      class procedure Init(screenWidth, screenHeight: Integer; fullScreen: Boolean);
+      private
+         class var screen : PSDL_SURFACE;
+         class var closeRequest: Boolean;
+      public
+         class procedure Init(screenWidth, screenHeight: Integer; fullScreen: Boolean);
+         class procedure Update();
+         class function isCloseRequested():Boolean;
    end;
 
 implementation
 
+{*
+ * Init display
+ *}
 class procedure TDisplay.Init(screenWidth, screenHeight: Integer; fullScreen: Boolean);
 begin
-   MessageBox(0, 'Hello world', 'Hi! This is WinAPI application. Lol', 0);
+   SDL_Init(SDL_INIT_EVERYTHING);
+   screen := SDL_SetVideoMode( 800, 600, 0, SDL_SWSURFACE );
+   closeRequest := false;
+end;
+
+{*
+ * Update display
+ *}
+class procedure TDisplay.Update();
+var
+   Event: TSDL_Event;
+begin
+   while SDL_PollEvent(@event) > 0 do
+   begin
+      case event.type_ of
+        SDL_KEYDOWN:
+        begin
+          case Event.Key.keysym.sym of                     
+            SDLK_ESCAPE :
+              closeRequest := true;
+          end;
+        end;
+      end;
+    end;
+
+   SDL_Flip(screen);
+   SDL_Delay(16);
+end;
+
+{*
+ * Returns `true` is user pressed Esc since last update
+ *}
+class function TDisplay.isCloseRequested():Boolean;
+begin
+   Result := closeRequest;
 end;
 
 end.
