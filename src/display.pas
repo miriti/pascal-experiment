@@ -33,14 +33,14 @@ end;
  *}
 class procedure TDisplay.Update();
 var
-   Event: TSDL_Event;
+   event: TSDL_Event;
 begin
    while SDL_PollEvent(@event) > 0 do
    begin
       case event.type_ of
         SDL_KEYDOWN:
         begin
-          case Event.Key.keysym.sym of                     
+          case event.Key.keysym.sym of                     
             SDLK_ESCAPE :
               closeRequest := true;
           end;
