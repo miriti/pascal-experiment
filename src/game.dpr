@@ -1,4 +1,3 @@
-{$APPTYPE GUI}
 {$MODE DELPHI}
 program game;
 uses

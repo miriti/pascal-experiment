@@ -3,7 +3,7 @@ unit display;
 interface
 
 uses
-   Windows, SDL;
+   SDL;
 
 type
    TDisplay = class
