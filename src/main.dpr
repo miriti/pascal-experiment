@@ -1,13 +1,11 @@
 {$MODE DELPHI}
 program main;
 uses
-	display in 'display.pas';
+	game in 'game.pas';
 	
+var
+	game: TGame;
 begin
-	TDisplay.Init(1024, 768, PChar('The Game'), false);
-
-	while not TDisplay.isCloseRequested() do
-  begin
-  	TDisplay.Update();
-  end;
+	game := TGame.Create;
+	game.Run;
 end.
