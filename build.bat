@@ -5,6 +5,7 @@
 	cd .\src\
 
 	:: Setup constants
+	set MAIN_SRC_FILE=main.dpr
 	set PROGRAM_NAME=game
 	set ENTRY_EXT=dpr
 	set EXE_DIR=..\bin
@@ -16,13 +17,14 @@
 
 :compile
 	echo Compiling...
+	set EXE_NAME=%PROGRAM_NAME%.exe
+
 	if not exist %EXE_DIR% mkdir %EXE_DIR%
 	if not exist %OBJ_DIR% mkdir %OBJ_DIR%		
-	fpc -FE%EXE_DIR% -FU%OBJ_DIR% -Sd %PROGRAM_NAME%.%ENTRY_EXT%
+	fpc -FE%EXE_DIR% -o%EXE_NAME% -FU%OBJ_DIR% -Sd -XX %MAIN_SRC_FILE%
 
 :run
-	cd %EXE_DIR%
-	set EXE_NAME=%PROGRAM_NAME%.exe
+	cd %EXE_DIR%	
 
 	if exist %EXE_NAME% (
 		goto compile-success

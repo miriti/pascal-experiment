@@ -1,5 +1,5 @@
 {$MODE DELPHI}
-program game;
+program main;
 uses
    display in 'display.pas';
 	
