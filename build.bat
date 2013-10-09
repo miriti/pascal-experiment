@@ -1,17 +1,18 @@
 :start
 	@echo off	
 
+	:: Change dir to source
+	cd .\src\
+
 	:: Setup constants
 	set PROGRAM_NAME=game
 	set ENTRY_EXT=dpr
 	set EXE_DIR=..\bin
-	set OBJ_DIR=..\obj
-
-	cd src
+	set OBJ_DIR=..\obj	
 
 :cleanup
 	echo Cleaning up...
-	del /F /Q EXE_DIR\*.* %OBJ_DIR%\*.*
+	del /F /Q %EXE_DIR%\*.* %OBJ_DIR%\*.*
 
 :compile
 	echo Compiling...
@@ -30,6 +31,7 @@
 	)
 
 :compile-success
+	echo Compilation succeed
 	xcopy ..\dll\*.* . /E /R /Y
 	%EXE_NAME%
 	goto end

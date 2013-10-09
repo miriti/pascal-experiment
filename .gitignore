@@ -1,3 +1,5 @@
 bin
+dll
+so
 obj
 *.sublime*
