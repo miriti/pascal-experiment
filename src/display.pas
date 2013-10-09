@@ -3,19 +3,19 @@ unit display;
 interface
 
 uses
-   SDL;
+	SDL;
 
 type
-   TDisplay = class
-      private
-         class var screen : PSDL_SURFACE;
-         class var closeRequest: Boolean;
-      public
-         class procedure Init(screenWidth, screenHeight: Integer; wndCaption:PChar; fullScreen: Boolean);
-         class procedure Update;
-         class procedure Quit;
-         class function isCloseRequested:Boolean;
-   end;
+	TDisplay = class
+	private
+		class var screen : PSDL_SURFACE;
+		class var closeRequest: Boolean;
+	public
+		class procedure Init(screenWidth, screenHeight: Integer; wndCaption:PChar; fullScreen: Boolean);
+		class procedure Update;
+		class procedure Quit;
+		class function isCloseRequested:Boolean;
+	end;
 
 implementation
 
@@ -24,10 +24,10 @@ implementation
  *}
 class procedure TDisplay.Init;
 begin
-   SDL_Init(SDL_INIT_EVERYTHING);
-   screen := SDL_SetVideoMode( 800, 600, 0, SDL_SWSURFACE );
-   SDL_WM_SetCaption(wndCaption, nil);
-   closeRequest := false;
+	SDL_Init(SDL_INIT_EVERYTHING);
+	screen := SDL_SetVideoMode( 800, 600, 0, SDL_SWSURFACE );
+	SDL_WM_SetCaption(wndCaption, nil);
+	closeRequest := false;
 end;
 
 {*
@@ -35,35 +35,35 @@ end;
  *}
 class procedure TDisplay.Update;
 var
-   event: TSDL_Event;
+	event: TSDL_Event;
 begin
-   while SDL_PollEvent(@event) > 0 do
-   begin
+	while SDL_PollEvent(@event) > 0 do
+	begin
 
-      case event.type_ of
-        SDL_QUITEV:
-        begin
-          closeRequest := true;  
-        end;
+		case event.type_ of
+			SDL_QUITEV:
+			begin
+				closeRequest := true;  
+			end;
 
-        SDL_KEYDOWN:
-        begin
-          case event.Key.keysym.sym of                     
-            SDLK_ESCAPE:
-              closeRequest := true;
-          end;
-        end;
+			SDL_KEYDOWN:
+			begin
+				case event.Key.keysym.sym of
+					SDLK_ESCAPE:
+						closeRequest := true;
+				end;
+			end;
+		end;
 
-      end;
-    end;
+	end;
 
-   SDL_Flip(screen);
-   SDL_Delay(16);
+	SDL_Flip(screen);
+	SDL_Delay(16);
 end;
 
 class procedure TDisplay.Quit;
 begin
-  SDL_Quit;
+	SDL_Quit;
 end;
 
 {*
@@ -71,7 +71,7 @@ end;
  *}
 class function TDisplay.isCloseRequested:Boolean;
 begin
-   Result := closeRequest;
+	Result := closeRequest;
 end;
 
 end.
