@@ -5,11 +5,15 @@ interface
 uses
 	SDL;
 
+const
+	SCREEN_WIDTH:Integer = 400;
+	SCREEN_HEIGHT:Integer = 400;
+
 type
 	TDisplayObject = class
 		public
 			procedure Update(DeltaTime: Integer); virtual;
-			procedure Render; virtual;
+			procedure Render(Surface: PSDL_SURFACE); virtual;
 	end;
 
 	TDisplayObjectContainer = class (TDisplayObject)
@@ -17,10 +21,12 @@ type
 			Children: array of TDisplayObject;
 		public
 			procedure Update(DeltaTime: Integer); override;
-			procedure Render; override;
+			procedure Render(Surface: PSDL_SURFACE); override;
 			procedure AddChild(Child: TDisplayObject);
 			procedure RemoveChild(Child: TDisplayObject);
 	end;
+
+	TPixels = array[0..399, 0..399] of Cardinal;
 
 implementation
 
@@ -53,7 +59,7 @@ var
 begin
 	for i := 0 to Length(Children) - 1 do
 	begin
-		Children[i].Render;
+		Children[i].Render(Surface);
 	end;
 end;
 

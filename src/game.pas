@@ -3,11 +3,9 @@ unit game;
 interface
 
 uses
-	SDL, render;
+	SDL, render, scenes;
 
 const
-	SCREEN_WIDTH:Integer = 400;
-	SCREEN_HEIGHT:Integer = 400;
 	WND_TITLE:PChar = 'Circles';
 
 type
@@ -36,6 +34,7 @@ begin
 	closeRequest := false;
 
 	rootList := TDisplayObjectContainer.Create;
+	rootList.AddChild(TGameMainScene.Create)
 end;
 
 {*
@@ -68,7 +67,7 @@ begin
 		end;
 
 		rootList.Update(16);
-		rootList.Render;
+		rootList.Render(screen);
 
 		SDL_Flip(screen);
 		SDL_Delay(16);
